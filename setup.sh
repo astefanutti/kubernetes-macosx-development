@@ -174,6 +174,9 @@ export KUBERNETES_PROVIDER=local
 export API_HOST=${guestIp}
 # So you can access apiserver from kubectl in the VM.
 export KUBERNETES_MASTER=\${API_HOST}:8080
+# Change host IP to guest IP
+export KUBELET_HOST=${guestIp}
+export HOSTNAME_OVERRIDE=${guestIp}
 
 # For convenience.
 alias k="cd \$GOPATH/src/k8s.io/kubernetes"
