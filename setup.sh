@@ -207,7 +207,7 @@ configure_and_start_docker
 # Get the go and etcd releases.
 install_go "1.10.1"
 # Latest kubernetes requires a recent version of etcd
-install_etcd "v3.0.10"
+install_etcd "v3.3.3"
 
 # HOST_GOPATH is passed by the VagrantFile looking at the Mac's environment.
 GUEST_GOPATH=/home/vagrant/gopath
