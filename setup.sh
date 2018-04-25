@@ -177,6 +177,9 @@ export KUBERNETES_MASTER=\${API_HOST}:8080
 # Change host IP to guest IP
 export KUBELET_HOST=${guestIp}
 export HOSTNAME_OVERRIDE=${guestIp}
+# Do not clean cluster state
+export PRESERVE_ETCD=true
+export ETCD_DIR=/var/run/kubernetes/etcd
 
 # For convenience.
 alias k="cd \$GOPATH/src/k8s.io/kubernetes"
