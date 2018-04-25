@@ -50,6 +50,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |c|
 
     if $mount_users_dir
       config.vm.synced_folder $home, $home, type: "nfs"
+      config.vm.synced_folder "/var/run/kubernetes", "/var/run/kubernetes", type: "nfs"
     end
 
     config.vm.provider :virtualbox do |vb|
