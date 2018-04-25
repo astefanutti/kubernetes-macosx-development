@@ -147,6 +147,10 @@ function install_go_packages() {
    # Kubernetes compilation requires this
    sudo -u vagrant -E go get -u github.com/jteeuwen/go-bindata/go-bindata
 
+   # Cloudflare's PKI and TLS toolkit
+   sudo -u vagrant -E go get -u github.com/cloudflare/cfssl/cmd/cfssl
+   sudo -u vagrant -E go get -u github.com/cloudflare/cfssl/cmd/cfssljson
+
    echo "Completed install_go_packages"
 }
 
