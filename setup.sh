@@ -13,27 +13,23 @@ function install_system_tools() {
    # Packages useful for testing/interacting with containers and
    # source control tools are so go get works properly.
    # net-tools: for ifconfig
-   yum -y install yum-fastestmirror git mercurial subversion curl nc gcc net-tools wget
+   yum -y install yum-fastestmirror git mercurial subversion curl nc gcc net-tools wget \
+   yum-utils device-mapper-persistent-data lvm2
 }
 
 # Add a repository to yum so that we can download
 # supported version of docker.
 function add_docker_yum_repo() {
-   tee /etc/yum.repos.d/docker.repo <<-'EOF'
-[dockerrepo]
-name=Docker Repository
-baseurl=https://yum.dockerproject.org/repo/main/centos/7/
-enabled=1
-gpgcheck=1
-gpgkey=https://yum.dockerproject.org/gpg
-EOF
+   yum-config-manager \
+    --add-repo \
+    https://download.docker.com/linux/centos/docker-ce.repo
 }
 
 # Set up yum and install the supported version of docker
 function install_docker() {
    add_docker_yum_repo
 
-   yum -y install docker-engine-1.10.3 docker-engine-selinux-1.10.3
+   yum -y install docker-ce
 }
 
 # Set docker daemon comand line options. We modify systemd configuration
@@ -47,7 +43,7 @@ function set_docker_daemon_options() {
    tee /etc/systemd/system/docker.service.d/docker.conf <<-'EOF'
 [Service]
 ExecStart=
-ExecStart=/usr/bin/docker daemon --selinux-enabled -H unix:///var/run/docker.sock -H tcp://0.0.0.0:2375
+ExecStart=/usr/bin/dockerd --selinux-enabled -H unix:///var/run/docker.sock -H tcp://0.0.0.0:2375
 EOF
 }
 
