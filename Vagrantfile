@@ -13,8 +13,8 @@ $gopath = ""
 $expose_docker_tcp = true
 $mount_users_dir = true
 $vb_gui = false
-$vb_memory = 1024
-$vb_cpus = 1
+$vb_memory = 4096
+$vb_cpus = 4
 $home = ENV["HOME"]
 
 if File.exist?(CONFIG)
