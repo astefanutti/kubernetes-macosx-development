@@ -58,6 +58,10 @@ function configure_and_start_docker() {
    echo "Docker daemon started."
 }
 
+function start_docker_registry() {
+   docker run -d -p 5000:5000 --restart=always --name registry registry:2
+}
+
 # Downloads the file with wget if it does not exist in the current directory.
 # The user passes the wget argument path to this function as the first parameter
 function ensure_file_is_downloaded() {
@@ -209,6 +213,7 @@ install_system_tools
 
 install_docker
 configure_and_start_docker
+start_docker_registry
 
 # Get the go and etcd releases.
 install_go "1.10.1"

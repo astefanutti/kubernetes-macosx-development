@@ -46,6 +46,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |c|
 
     if $expose_docker_tcp
       config.vm.network "forwarded_port", guest: 2375, host: 2375, auto_correct: true
+      config.vm.network "forwarded_port", guest: 5000, host: 5000, auto_correct: true
     end
 
     if $mount_users_dir
