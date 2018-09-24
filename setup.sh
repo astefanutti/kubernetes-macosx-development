@@ -216,7 +216,7 @@ configure_and_start_docker
 start_docker_registry
 
 # Get the go and etcd releases.
-install_go "1.10.1"
+install_go "1.11"
 # Latest kubernetes requires a recent version of etcd
 install_etcd "v3.3.3"
 
